@@ -5,6 +5,9 @@
 </template>
 
 <script>
+
+    import {ROAST_CONFIG} from '../../config'
+
     export default {
         props: {
             'latitude': {  // 经度
@@ -51,20 +54,24 @@
                 // 清空点标记数组
                 this.markers = []
 
+                // 自定义点标记图标
+                let image = ROAST_CONFIG.APP_URL + '/storage/svg/coffee-marker.svg';
+                let icon = new AMap.Icon({
+                    image: image,  // 图像 URL
+                    imageSize: new AMap.Size(19, 33)  // 设置图标尺寸
+                })
                 // 遍历所有咖啡店并为每个咖啡店创建点标记
                 for (let i = 0; i < this.cafes.length; i++) {
                     // 通过高德地图 API 为每个咖啡店创建点标记并设置经纬度
                     let marker = new AMap.Marker({
-                        position: AMap.LngLat(parseFloat(this.cafes[i].latitude), parseFloat(this.cafes[i].longitude)),
-                        title: this.cafes[i].name
+                        position: new AMap.LngLat(parseFloat(this.cafes[i].latitude), parseFloat(this.cafes[i].longitude)),
+                        title: this.cafes[i].name,
+                        icon: icon  // 通过 icon 对象设置自定义点标记图标来替代默认蓝色图标
                     })
 
                     //将每个点标记放到点标记数组中
                     this.markers.push(marker)
                 }
-
-                console.log(this.markers)
-
                 // 将所有点标记显示到地图上
                 this.map.add(this.markers)
             },
@@ -72,7 +79,7 @@
             // 从地图上清理点标记
             clearMarkers() {
                 // 遍历所有点标记并将其设置为 null 从而从地图上将其清除
-                for (var i = 0; i < this.markers.length; i++) {
+                for (let i = 0; i < this.markers.length; i++) {
                     this.markers[i].setMap(null)
                 }
             }
