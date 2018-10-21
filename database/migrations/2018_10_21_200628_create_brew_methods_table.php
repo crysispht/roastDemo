@@ -15,6 +15,7 @@ class CreateBrewMethodsTable extends Migration
     {
         Schema::create('brew_methods', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('method');
             $table->timestamps();
         });
     }

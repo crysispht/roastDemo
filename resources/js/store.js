@@ -1,6 +1,7 @@
 /**
  * Adds the promise polyfill for IE 11
  */
+
 require('es6-promise').polyfill()
 
 /**
@@ -25,12 +26,15 @@ import {cafes} from './modules/cafes'
 
 import {users} from './modules/users'
 
+import {brewMethods} from "./modules/brewMethods"
+
 /**
  * Export the data store.
  */
 export default new Vuex.Store({
     modules: {
         cafes,
-        users
+        users,
+        brewMethods
     }
 })

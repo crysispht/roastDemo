@@ -51,6 +51,15 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function () {
     */
     Route::get('/cafes/{id}', 'API\CafesController@getCafe');
 
-
+    /*
+     |-------------------------------------------------------------------------------
+     | 获取所有冲泡方法
+     |-------------------------------------------------------------------------------
+     | 请求URL: /api/v1/brew-methods
+     | 控制器:  API\BrewMethodsController@getBrewMethods
+     | 请求方法: GET
+     | API描述: 获取应用中的所有冲泡方法
+    */
+    Route::get('/brew-methods', 'API\BrewMethodsController@getBrewMethods');    
 
 });

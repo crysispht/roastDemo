@@ -31,7 +31,8 @@
         },
         data() {
             return {
-                markers: []
+                markers: [],
+                infoWindows: []
             }
         },
         mounted() {
@@ -55,7 +56,7 @@
                 this.markers = []
 
                 // 自定义点标记图标
-                let image = ROAST_CONFIG.APP_URL + '/storage/svg/coffee-marker.svg';
+                let image = ROAST_CONFIG.APP_URL + '/svg/coffee-marker.svg';
                 let icon = new AMap.Icon({
                     image: image,  // 图像 URL
                     imageSize: new AMap.Size(19, 33)  // 设置图标尺寸
@@ -66,12 +67,27 @@
                     let marker = new AMap.Marker({
                         position: new AMap.LngLat(parseFloat(this.cafes[i].latitude), parseFloat(this.cafes[i].longitude)),
                         title: this.cafes[i].name,
-                        icon: icon  // 通过 icon 对象设置自定义点标记图标来替代默认蓝色图标
+                        icon: icon,  // 通过 icon 对象设置自定义点标记图标来替代默认蓝色图标
+                        map: this.map
+                    })
+
+                    var infoWindow = new AMap.InfoWindow({
+                        content:this.cafes[i].name
+                    })
+
+                    this.infoWindows.push(infoWindow)
+
+                    // 绑定点击事件到点标记对象，点击打开上面创建的信息窗体
+                    marker.on('click',function () {
+                        let map = this.getMap()
+                        let position = this.getPosition()
+                        infoWindow.open(map,position)
                     })
 
                     //将每个点标记放到点标记数组中
                     this.markers.push(marker)
                 }
+                
                 // 将所有点标记显示到地图上
                 this.map.add(this.markers)
             },

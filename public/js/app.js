@@ -821,6 +821,36 @@ module.exports = g;
 
 /***/ }),
 /* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ROAST_CONFIG; });
+/**
+ * Defines the API route we are using.
+ */
+var api_url = '';
+var app_url = '';
+var gaode_maps_js_api_key = '10dc8f591cf134c366cde9a6eb384d89';
+
+switch ("development") {
+    case 'development':
+        api_url = 'http://roast.test/api/v1';
+        app_url = 'http://roast.test';
+        break;
+    case 'production':
+        api_url = 'http://roast.demo.laravelacademy.org/api/v1';
+        app_url = 'http://roast.demo.laravelacademy.org';
+        break;
+}
+
+var ROAST_CONFIG = {
+    API_URL: api_url,
+    GAODE_MAPS_JS_API_KEY: gaode_maps_js_api_key,
+    APP_URL: app_url
+};
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -921,10 +951,10 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -1114,7 +1144,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12080,36 +12110,6 @@ module.exports = Vue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(39).setImmediate))
 
 /***/ }),
-/* 8 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ROAST_CONFIG; });
-/**
- * Defines the API route we are using.
- */
-var api_url = '';
-var app_url = '';
-var gaode_maps_js_api_key = '10dc8f591cf134c366cde9a6eb384d89';
-
-switch ("development") {
-    case 'development':
-        api_url = 'http://roast.test/api/v1';
-        app_url = 'http://roast.test';
-        break;
-    case 'production':
-        api_url = 'http://roast.demo.laravelacademy.org/api/v1';
-        app_url = 'http://roast.demo.laravelacademy.org';
-        break;
-}
-
-var ROAST_CONFIG = {
-    API_URL: api_url,
-    GAODE_MAPS_JS_API_KEY: gaode_maps_js_api_key,
-    APP_URL: app_url
-};
-
-/***/ }),
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22753,7 +22753,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(16);
-module.exports = __webpack_require__(86);
+module.exports = __webpack_require__(88);
 
 
 /***/ }),
@@ -22762,7 +22762,7 @@ module.exports = __webpack_require__(86);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__routes__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store__ = __webpack_require__(79);
@@ -51695,7 +51695,7 @@ module.exports = __webpack_require__(21);
 var utils = __webpack_require__(0);
 var bind = __webpack_require__(10);
 var Axios = __webpack_require__(23);
-var defaults = __webpack_require__(5);
+var defaults = __webpack_require__(6);
 
 /**
  * Create an instance of Axios
@@ -51778,7 +51778,7 @@ function isSlowBuffer (obj) {
 "use strict";
 
 
-var defaults = __webpack_require__(5);
+var defaults = __webpack_require__(6);
 var utils = __webpack_require__(0);
 var InterceptorManager = __webpack_require__(32);
 var dispatchRequest = __webpack_require__(33);
@@ -52317,7 +52317,7 @@ module.exports = InterceptorManager;
 var utils = __webpack_require__(0);
 var transformData = __webpack_require__(34);
 var isCancel = __webpack_require__(13);
-var defaults = __webpack_require__(5);
+var defaults = __webpack_require__(6);
 var isAbsoluteURL = __webpack_require__(35);
 var combineURLs = __webpack_require__(36);
 
@@ -52828,14 +52828,14 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(7)))
 
 /***/ }),
 /* 41 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(42);
 /*
@@ -55604,7 +55604,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -55667,6 +55667,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         this.$store.dispatch('loadCafes');
         this.$store.dispatch('loadUser');
+        this.$store.dispatch('loadBrewMethods');
     }
 });
 
@@ -56367,7 +56368,7 @@ exports.push([module.i, "\ndiv#cafe-map[data-v-5423b48b] {\n  width: 100%;\n  he
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config__ = __webpack_require__(5);
 //
 //
 //
@@ -56401,7 +56402,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     data: function data() {
         return {
-            markers: []
+            markers: [],
+            infoWindows: []
         };
     },
     mounted: function mounted() {
@@ -56426,7 +56428,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.markers = [];
 
             // 自定义点标记图标
-            var image = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* ROAST_CONFIG */].APP_URL + '/storage/svg/coffee-marker.svg';
+            var image = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* ROAST_CONFIG */].APP_URL + '/svg/coffee-marker.svg';
             var icon = new AMap.Icon({
                 image: image, // 图像 URL
                 imageSize: new AMap.Size(19, 33) // 设置图标尺寸
@@ -56437,12 +56439,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 var marker = new AMap.Marker({
                     position: new AMap.LngLat(parseFloat(this.cafes[i].latitude), parseFloat(this.cafes[i].longitude)),
                     title: this.cafes[i].name,
-                    icon: icon // 通过 icon 对象设置自定义点标记图标来替代默认蓝色图标
+                    icon: icon, // 通过 icon 对象设置自定义点标记图标来替代默认蓝色图标
+                    map: this.map
+                });
+
+                var infoWindow = new AMap.InfoWindow({
+                    content: this.cafes[i].name
+                });
+
+                this.infoWindows.push(infoWindow);
+
+                // 绑定点击事件到点标记对象，点击打开上面创建的信息窗体
+                marker.on('click', function () {
+                    var map = this.getMap();
+                    var position = this.getPosition();
+                    infoWindow.open(map, position);
                 });
 
                 //将每个点标记放到点标记数组中
                 this.markers.push(marker);
             }
+
             // 将所有点标记显示到地图上
             this.map.add(this.markers);
         },
@@ -57153,14 +57170,16 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_cafes__ = __webpack_require__(82);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_users__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_brewMethods__ = __webpack_require__(86);
 /**
  * Adds the promise polyfill for IE 11
  */
+
 __webpack_require__(80).polyfill();
 
 /**
@@ -57184,13 +57203,16 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 
 
 
+
+
 /**
  * Export the data store.
  */
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
   modules: {
     cafes: __WEBPACK_IMPORTED_MODULE_2__modules_cafes__["a" /* cafes */],
-    users: __WEBPACK_IMPORTED_MODULE_3__modules_users__["a" /* users */]
+    users: __WEBPACK_IMPORTED_MODULE_3__modules_users__["a" /* users */],
+    brewMethods: __WEBPACK_IMPORTED_MODULE_4__modules_brewMethods__["a" /* brewMethods */]
   }
 }));
 
@@ -58382,7 +58404,7 @@ return Promise$1;
 
 //# sourceMappingURL=es6-promise.map
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6), __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7), __webpack_require__(4)))
 
 /***/ }),
 /* 81 */
@@ -59443,7 +59465,7 @@ var cafes = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config__ = __webpack_require__(5);
 /**
  * Imports the Roast API URL from the config.
  */
@@ -59609,7 +59631,7 @@ var users = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config__ = __webpack_require__(5);
 /**
  * Imports the Roast API URL from the config.
  */
@@ -59640,6 +59662,105 @@ var users = {
 
 /***/ }),
 /* 86 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return brewMethods; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_brewMethod__ = __webpack_require__(87);
+/*
+|-------------------------------------------------------------------------------
+| VUEX modules/brewmethods.js
+|-------------------------------------------------------------------------------
+| The Vuex data store for the brew methods
+*/
+
+
+
+var brewMethods = {
+    /**
+     * Defines the state being monitored for the module
+     */
+    state: {
+        brewMethods: [],
+        brewMethodsLoadStatus: 0
+    },
+
+    /**
+     * Defines the actions used by the Vuex module.
+     */
+    actions: {
+        // Loads all of the brew methods.
+        loadBrewMethods: function loadBrewMethods(_ref) {
+            var commit = _ref.commit;
+
+            commit('setBrewMethodsLoadStatus', 1);
+
+            // Calls the API to load the brew methods.
+            __WEBPACK_IMPORTED_MODULE_0__api_brewMethod__["a" /* default */].getBrewMethods().then(function (response) {
+                // Sets the brew methods on a successful response.
+                commit('setBrewMethods', response.data);
+                commit('setBrewMethodsLoadStatus', 2);
+            }).catch(function () {
+                // Clears the brew methods on failure.
+                commit('setBrewMethods', []);
+                commit('setBrewMethodsLoadStatus', 3);
+            });
+        }
+    },
+
+    /**
+     * Defines the mutations used by the module.
+     */
+    mutations: {
+        // Sets the brew method load status.
+        setBrewMethodsLoadStatus: function setBrewMethodsLoadStatus(state, status) {
+            state.brewMethodsLoadStatus = status;
+        },
+
+        // Sets the brew methods.
+        setBrewMethods: function setBrewMethods(state, brewMethods) {
+            state.brewMethods = brewMethods;
+        }
+    },
+
+    /**
+     * Defines the getters used by the module.
+     */
+    getters: {
+        // Returns the brew methods.
+        getBrewMethods: function getBrewMethods(state) {
+            return state.brewMethods;
+        },
+
+        // Returns the brew methods load status.
+        getBrewMethodsLoadStatus: function getBrewMethodsLoadStatus(state) {
+            return state.brewMethodsLoadStatus;
+        }
+    }
+};
+
+/***/ }),
+/* 87 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config__ = __webpack_require__(5);
+/**
+ * Imports the Roast API URL from the config.
+ */
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  /*
+   GET   /api/v1/brew-methods
+   */
+  getBrewMethods: function getBrewMethods() {
+    return axios.get(__WEBPACK_IMPORTED_MODULE_0__config__["a" /* ROAST_CONFIG */].API_URL + '/brew-methods');
+  }
+});
+
+/***/ }),
+/* 88 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

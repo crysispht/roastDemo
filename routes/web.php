@@ -27,3 +27,6 @@ Route::get('/auth/{social}/callback', 'Web\AuthenticationController@getSocialCal
 Route::get('geocode', function () {
     return \App\Utilities\GaodeMaps::geocodeAddress('故宫', '北京', '北京');
 });
+
+
+Route::get('/cafe/{id}', 'API\CafesController@getCafe');
