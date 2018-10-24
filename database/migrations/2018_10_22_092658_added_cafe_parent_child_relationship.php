@@ -13,7 +13,14 @@ class AddedCafeParentChildRelationship extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('cafes', function (Blueprint $table) {
+            $table->integer('parent')->unsigned()->nullable()->after('id');
+            $table->string('location_name')->after('name');
+            $table->integer('roaster')->after('longitude');
+            $table->text('website')->after('roaster');
+            $table->text('description')->after('website');
+            $table->integer('added_by')->after('description')->unsigned()->nullable();
+        });
     }
 
     /**
@@ -23,6 +30,13 @@ class AddedCafeParentChildRelationship extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('cafes', function (Blueprint $table) {
+            $table->dropColumn('parent');
+            $table->dropColumn('location_name');
+            $table->dropColumn('roaster');
+            $table->dropColumn('website');
+            $table->dropColumn('description');
+            $table->dropColumn('added_by');
+        });
     }
 }

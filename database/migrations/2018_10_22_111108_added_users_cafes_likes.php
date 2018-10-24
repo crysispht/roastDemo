@@ -14,7 +14,9 @@ class AddedUsersCafesLikes extends Migration
     public function up()
     {
         Schema::create('users_cafes_likes', function (Blueprint $table) {
-            $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('cafe_id')->unsigned();
+            $table->primary(['user_id', 'cafe_id']);
             $table->timestamps();
         });
     }
