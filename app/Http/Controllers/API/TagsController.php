@@ -12,9 +12,6 @@ class TagsController extends Controller
 {
     public function getTags()
     {
-        $cafes = new Cafe();
-        dd($cafes->find(8)->tags);
-
         $query = Request::get('search');
 
         if ($query == null || $query == '') {

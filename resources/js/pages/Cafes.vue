@@ -1,5 +1,11 @@
 <style>
-
+    div#cafe-map {
+        position: absolute;
+        top: 50px;
+        left: 0px;
+        right: 0px;
+        bottom: 100px;
+    }
 </style>
 
 <template>

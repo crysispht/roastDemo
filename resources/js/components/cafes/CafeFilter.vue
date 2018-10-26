@@ -2,9 +2,6 @@
     <div id="cafe-filter">
         <div class="grid-container" v-show="show">
             <div class="grid-x grid-padding-x">
-                <span class="show-filters" v-on:click="show = !show">{{ show ? '隐藏过滤器 ↑' : '显示过滤器 ↓' }}</span>
-            </div>
-            <div class="grid-x grid-padding-x">
                 <div class="large-6 medium-6 small-12 cell">
                     <label>搜索</label>
                     <input type="text" v-model="textSearch" placeholder="搜索"/>
@@ -22,6 +19,11 @@
                         {{ method.method }}
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="grid-container">
+            <div class="grid-x grid-padding-x">
+                <span class="show-filters" v-on:click="show =! show">{{ show ? '隐藏过滤器 ↑' : '显示过滤器 ↓' }}</span>
             </div>
         </div>
     </div>
@@ -54,7 +56,7 @@
         },
         mounted() {
             EventBus.$on('tags-edited', function (tagsEdited) {
-                if (tagsEdited.unique == 'cafe-search') {
+                if (tagsEdited.unique === 'cafe-search') {
                     this.tags = tagsEdited.tags;
                 }
             }.bind(this));
@@ -115,14 +117,15 @@
         &.active {
             border-bottom: 4px solid $primary-color;
         }
+    }
 
-        span.show-filters{
-            display: block;
-            margin: auto;
-            color: $dark-color;
-            font-family: 'Josefin Sans', sans-serif;
-            cursor: pointer;
-            font-size: 14px;
-        }
+
+    span.show-filters {
+        display: block;
+        margin: auto;
+        color: $dark-color;
+        font-family: 'Josefin Sans', sans-serif;
+        cursor: pointer;
+        font-size: 14px;
     }
 </style>

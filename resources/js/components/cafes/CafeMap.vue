@@ -2,13 +2,22 @@
     <div id="cafe-map">
 
     </div>
+    <cafe-map-filter></cafe-map-filter>
 </template>
 
 <script>
-
+    import CafeMapFilter from './CafeMapFilter.vue';
     import {ROAST_CONFIG} from '../../config'
+    import {EventBus} from '../../event-bus.js';
+
+    import {CafeIsRoasterFilter} from '../../mixins/filters/CafeIsRoasterFilter.js';
+    import {CafeBrewMethodsFilter} from '../../mixins/filters/CafeBrewMethodsFilter.js';
+    import {CafeTextFilter} from '../../mixins/filters/CafeTextFilter.js';
 
     export default {
+        components: {
+            CafeMapFilter
+        },
         props: {
             'latitude': {  // 经度
                 type: Number,
@@ -35,6 +44,11 @@
                 infoWindows: []
             }
         },
+        mixins: [
+            CafeIsRoasterFilter,
+            CafeBrewMethodsFilter,
+            CafeTextFilter
+        ],
         mounted() {
             this.map = new AMap.Map('cafe-map', {
                 center: [this.latitude, this.longitude],
@@ -43,6 +57,11 @@
             // 清除并重构点标记
             this.clearMarkers()
             this.buildMarkers()
+
+            // 监听 filters-updated 事件过滤点标记
+            EventBus.$on('filters-updated', function (filters) {
+                this.processFilters(filters);
+            }.bind(this));
         },
         computed: {
             cafes() {
@@ -72,22 +91,22 @@
                     })
 
                     var infoWindow = new AMap.InfoWindow({
-                        content:this.cafes[i].name
+                        content: this.cafes[i].name
                     })
 
                     this.infoWindows.push(infoWindow)
 
                     // 绑定点击事件到点标记对象，点击打开上面创建的信息窗体
-                    marker.on('click',function () {
+                    marker.on('click', function () {
                         let map = this.getMap()
                         let position = this.getPosition()
-                        infoWindow.open(map,position)
+                        infoWindow.open(map, position)
                     })
 
                     //将每个点标记放到点标记数组中
                     this.markers.push(marker)
                 }
-                
+
                 // 将所有点标记显示到地图上
                 this.map.add(this.markers)
             },

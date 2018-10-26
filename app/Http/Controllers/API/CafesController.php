@@ -8,10 +8,10 @@ use App\Models\Cafe;
 use App\Utilities\GaodeMaps;
 use App\Utilities\Tagger;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 
 class CafesController extends Controller
 {
@@ -25,7 +25,11 @@ class CafesController extends Controller
     */
     public function getCafes()
     {
-        $cafes = Cafe::with('brewMethods')->get();
+        $cafes = Cafe::with('brewMethods')
+            ->with(['tags' => function (Relation $query) {
+                $query->select('name');
+            }])
+            ->get();
         return response()->json($cafes);
 
     }
