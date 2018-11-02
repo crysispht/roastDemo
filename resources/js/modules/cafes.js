@@ -65,7 +65,7 @@ export const cafes = {
             CafeAPI.getCafe(data.id)
                 .then(function (response) {
                     commit('setCafe', response.data);
-                    if (response.data.user_like.length > 0) {
+                    if (response.data.user_like_count > 0) {
                         commit('setCafeLikedStatus', true);
                     }
                     commit('setCafeLoadStatus', 2);
@@ -82,7 +82,8 @@ export const cafes = {
             CafeAPI.postAddNewCafe(data.company_name, data.company_id, data.company_type, data.subscription, data.website, data.location_name, data.address, data.city, data.state, data.zip, data.brew_methods, data.matcha, data.tea)
                 .then(function (response) {
                     if (typeof response.data.cafe_add_pending !== 'undefined') {
-                        commit('setCafeAddedText', response.data.cafe_add_pending + ' 正在添加中!');
+                        // 没有新增权限提示文本
+                        commit('setCafeAddedText', response.data.cafe_add_pending + ' 审核通过后才能添加!');
                     } else {
                         commit('setCafeAddedText', response.data.name + ' 已经添加!');
                     }
@@ -174,7 +175,8 @@ export const cafes = {
             CafeAPI.putEditCafe(data.id, data.company_name, data.company_id, data.company_type, data.subscription, data.website, data.location_name, data.address, data.city, data.state, data.zip, data.brew_methods, data.matcha, data.tea)
                 .then(function (response) {
                     if (typeof response.data.cafe_updates_pending !== 'undefined') {
-                        commit('setCafeEditText', response.data.cafe_updates_pending + ' 正在编辑中!');
+                        // 没有修改权限提示文本
+                        commit('setCafeEditText', response.data.cafe_updates_pending + ' 审核通过才能更新!');
                     } else {
                         commit('setCafeEditText', response.data.name + ' 已经编辑成功!');
                     }
@@ -195,7 +197,8 @@ export const cafes = {
                 .then(function (response) {
 
                     if (typeof response.data.cafe_delete_pending !== 'undefined') {
-                        commit('setCafeDeletedText', response.data.cafe_delete_pending + ' 正在删除中!');
+                        // 没有删除权限提示文本
+                        commit('setCafeDeletedText', response.data.cafe_delete_pending + ' 审核通过才能删除!');
                     } else {
                         commit('setCafeDeletedText', '咖啡店删除成功!');
                     }
@@ -207,6 +210,11 @@ export const cafes = {
                 .catch(function () {
                     commit('setCafeDeleteStatus', 3);
                 });
+        },
+
+        clearLikeAndUnlikeStatus({commit}, data) {
+            commit('setCafeLikeActionStatus', 0);
+            commit('setCafeUnlikeActionStatus', 0);
         },
     },
     /**

@@ -1,3 +1,25 @@
+<style lang="scss">
+    @import '~@/abstracts/_variables.scss';
+
+    div#app-layout {
+        div.show-filters {
+            height: 90px;
+            width: 23px;
+            position: absolute;
+            left: 0px;
+            background-color: white;
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+            line-height: 90px;
+            top: 50%;
+            cursor: pointer;
+            margin-top: -45px;
+            z-index: 9;
+            text-align: center;
+        }
+    }
+</style>
+
 <template>
     <div id="app-layout">
         <div class="show-filters" v-show="( !showFilters && cafesView === 'map' )" v-on:click="toggleShowFilters()">
@@ -20,6 +42,7 @@
 </template>
 
 <script>
+
     import Navigation from '../components/global/Navigation.vue';
     import LoginModal from '../components/global/LoginModal.vue';
     import SuccessNotification from '../components/global/SuccessNotification.vue';
@@ -41,6 +64,9 @@
             this.$store.dispatch('loadUser');
             this.$store.dispatch('loadBrewMethods');
             this.$store.dispatch('loadCities');
+            if (this.$store._modules.get(['admin'])) {
+                this.$store.unregisterModule('admin', {});
+            }
         },
         computed: {
             showFilters() {
@@ -77,25 +103,3 @@
         }
     }
 </script>
-
-<style lang="scss">
-    @import '~@/abstracts/_variables.scss';
-
-    div#app-layout {
-        div.show-filters {
-            height: 90px;
-            width: 23px;
-            position: absolute;
-            left: 0px;
-            background-color: white;
-            border-top-right-radius: 3px;
-            border-bottom-right-radius: 3px;
-            line-height: 90px;
-            top: 50%;
-            cursor: pointer;
-            margin-top: -45px;
-            z-index: 9;
-            text-align: center;
-        }
-    }
-</style>

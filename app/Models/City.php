@@ -28,8 +28,14 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\City whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\City whereState($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\City whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Cafe[] $cafes
  */
 class City extends Model
 {
-    //
+    protected $table = 'cities';
+
+    public function cafes()
+    {
+        return $this->hasMany(Cafe::class, 'city_id', 'id');
+    }
 }

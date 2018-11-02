@@ -41,6 +41,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cafe whereState($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cafe whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cafe whereZip($value)
+ * @property int|null $added_by
+ * @property int $tea
+ * @property int $matcha
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Cafe onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cafe whereAddedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cafe whereMatcha($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Cafe whereTea($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Cafe withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Cafe withoutTrashed()
  */
 class Cafe extends Model
 {
@@ -62,7 +73,7 @@ class Cafe extends Model
     //标识登录用户是否已经喜欢/取消喜欢指定咖啡店
     public function userLike()
     {
-        return $this->belongsToMany(User::class, 'users_cafes_likes', 'cafe_id', 'user_id')->where('user_id', auth()->id());
+        return $this->belongsToMany(User::class, 'users_cafes_likes', 'cafe_id', 'user_id')->where('user_id', auth('api')->id());
     }
 
     public function tags()
@@ -80,5 +91,15 @@ class Cafe extends Model
     public function company()
     {
         return $this->belongsTo(Company::class, 'company_id', 'id');
+    }
+
+    public function actions()
+    {
+        return $this->hasMany(Action::class, 'cafe_id', 'id');
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city_id', 'id');
     }
 }

@@ -49,10 +49,20 @@ use Laravel\Passport\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereState($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUpdatedAt($value)
+ * @property int $permission
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Action[] $actions
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Action[] $actionsProcessed
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User wherePermission($value)
  */
 class User extends Authenticatable
 {
-    use Notifiable,HasApiTokens;
+    use Notifiable, HasApiTokens;
+
+    const ROLE_GENERAL_USER = 0;  // 普通用户
+    const ROLE_SHOP_OWNER = 1;    // 商家用户
+    const ROLE_ADMIN = 2;         // 管理员
+    const ROLE_SUPER_ADMIN = 3;   // 超级管理员
+
 
     /**
      * The attributes that are mass assignable.
@@ -88,5 +98,17 @@ class User extends Authenticatable
     public function companiesOwned()
     {
         return $this->belongsToMany(Company::class, 'company_owners', 'user_id', 'company_id');
+    }
+
+    // 该用户名下所有动作
+    public function actions()
+    {
+        return $this->hasMany(Action::class, 'id', 'user_id');
+    }
+
+    // 该用户名下所有处理的后台审核动作
+    public function actionsProcessed()
+    {
+        return $this->hasMany(Action::class, 'id', 'processed_by');
     }
 }

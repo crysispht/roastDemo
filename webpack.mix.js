@@ -31,6 +31,9 @@ mix.js('resources/js/app.js', 'public/js')
             alias: {
                 '@': path.resolve('resources/sass')
             }
+        },
+        output: {
+            chunkFilename: 'js/[name].js'
         }
     })
     .sass('resources/sass/app.scss', 'public/css');

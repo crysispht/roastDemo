@@ -51,7 +51,7 @@ export const cities = {
             /*
               Calls the API to load an individual city by slug.
             */
-            CitiesAPI.getCity(data.slug)
+            CitiesAPI.getCity(data.id)
                 .then(function (response) {
                     commit('setCity', response.data);
                     commit('setCityLoadStatus', 2);

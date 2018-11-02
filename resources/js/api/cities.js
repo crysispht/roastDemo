@@ -12,9 +12,9 @@ export default {
     },
 
     /*
-      GET   /api/v1/cities/{slug}
+      GET   /api/v1/cities/{id}
     */
-    getCity: function (slug) {
-        return axios.get(ROAST_CONFIG.API_URL + '/cities/' + slug);
+    getCity: function (id) {
+        return axios.get(ROAST_CONFIG.API_URL + '/cities/' + id);
     }
 }

@@ -4,29 +4,30 @@
     Builds our style structure
         https://sass-guidelin.es/#the-7-1-pattern
    ========================================================================== */
-
 /**
  * Table of Contents:
  *
  *  1. Abstracts
  */
-
-@import "abstracts/variables";
-
+@import 'abstracts/variables';
 /**
  * 2: Components
  */
-@import "components/validations";
+@import 'components/validations';
 @import 'components/labels';
 @import 'components/notification';
 @import 'components/pac-container';
 @import 'components/options';
 @import 'components/cafe-type';
+@import 'components/admin/page-header';
+@import 'components/admin/action-detail';
+@import 'components/admin/tabs';
+@import 'components/admin/list-header';
+@import 'components/admin/listing';
 /**
  * 3: Layouts
  */
-@import "layouts/page";
-
+@import 'layouts/page';
 /**
  * 4: Animations
  */
@@ -35,5 +36,4 @@
 @import 'animations/scale-in-center';
 @import 'animations/slide-out-back';
 @import 'animations/slide-in-top';
-
-@import "../../node_modules/foundation-sites/assets/foundation";
+@import 'node_modules/foundation-sites/assets/foundation.scss';
