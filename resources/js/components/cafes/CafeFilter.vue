@@ -95,7 +95,7 @@
     }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
     @import '~@/abstracts/_variables.scss';
 
     div.filter-brew-method {

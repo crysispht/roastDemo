@@ -1,66 +1,39 @@
 <style lang="scss">
-    @import '~@/abstracts/_variables.scss';
-
-    div#home {
-        a.add-cafe-button {
-            float: right;
-            display: block;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            background-color: $dark-color;
-            color: white;
-            padding-top: 5px;
-            padding-bottom: 5px;
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-    }
 </style>
 
 <template>
-    <div id="home">
-        <div class="grid-container">
-            <div class="grid-x">
-                <div class="large-12 medium-12 small-12 columns">
-                    <router-link :to="{ name: 'newcafe' }" class="add-cafe-button">+ 新增咖啡店</router-link>
-                </div>
-            </div>
-        </div>
-        <cafe-filter></cafe-filter>
-        <div class="grid-container">
-            <div class="grid-x grid-padding-x">
-                <loader v-show="cafesLoadStatus == 1" :width="100" :height="100"></loader>
-                <cafe-card v-for="cafe in cafes" :key="cafe.id" :cafe="cafe"></cafe-card>
-            </div>
-        </div>
+    <div id="cafes" class="page">
+        <cafe-map v-show="cafesView === 'map'"></cafe-map>
+        <cafe-list v-show="cafesView === 'list'"></cafe-list>
+
+        <add-cafe-button></add-cafe-button>
+        <toggle-cafes-view></toggle-cafes-view>
+        <map-legend></map-legend>
+
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
 
-    import CafeFilter from '../components/cafes/CafeFilter';
-    import CafeCard from '../components/cafes/CafeCard';
-    import Loader from '../components/global/Loader';
+    import CafeMap from '../components/cafes/CafeMap.vue';
+    import CafeList from '../components/cafes/CafeList.vue';
+    import AddCafeButton from '../components/cafes/AddCafeButton.vue';
+    import ToggleCafesView from '../components/cafes/ToggleCafesView.vue';
+    import MapLegend from '../components/cafes/MapLegend.vue';
 
     export default {
         components: {
-            CafeFilter,
-            CafeCard,
-            Loader
-        },
-        created() {
-            this.$store.dispatch('loadCafes');
+            CafeMap,
+            CafeList,
+            AddCafeButton,
+            ToggleCafesView,
+            MapLegend
         },
 
         computed: {
-            // 获取 cafes 加载状态
-            cafesLoadStatus() {
-                return this.$store.getters.getCafesLoadStatus
-            },
-
-            // 获取 cafes
-            cafes() {
-                return this.$store.getters.getCafes
+            cafesView() {
+                return this.$store.getters.getCafesView;
             }
         }
     }

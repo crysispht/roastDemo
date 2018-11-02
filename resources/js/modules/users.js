@@ -22,14 +22,14 @@ export const users = {
     */
     actions: {
         loadUser({commit}) {
-            commit('setUserLoadStatus', 1)
+            commit('setUserLoadStatus', 1);
             UserAPI.getUser()
                 .then(function (response) {
-                    commit('setUser', response.data)
+                    commit('setUser', response.data);
                     commit('setUserLoadStatus', 2)
                 })
                 .catch(function () {
-                    commit('setUser', {})
+                    commit('setUser', {});
                     commit('setUserLoadStatus', 3)
                 })
         },
@@ -92,7 +92,9 @@ export const users = {
          Returns the user load status.
          */
         getUserLoadStatus(state) {
-            return state.userLoadStatus
+            return function () {
+                return state.userLoadStatus
+            }
         },
 
         /*

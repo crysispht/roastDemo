@@ -37,3 +37,11 @@ new Vue({
     router,
     store
 }).$mount('#app');
+
+gtag('set', 'page_path', router.currentRoute.path);
+gtag('event', 'page_view');
+
+router.afterEach((to, from) => {
+    gtag('set', 'page_path', to.path);
+    gtag('event', 'page_view');
+});

@@ -74,9 +74,13 @@
                         <h2>{{ cafe.name }}</h2>
                         <h3 v-if="cafe.location_name !== ''">{{ cafe.location_name }}</h3>
 
-                        <div class="grid-x">
-                            <div class="large-12 medium-12 small-12 cell">
-                                <toggle-like></toggle-like>
+                        <div class="like-container">
+                            <div class="grid-x">
+                                <div class="large-12 medium-12 small-12 cell">
+                                    <toggle-like v-if="user !== '' && userLoadStatus === 2"></toggle-like>
+                                    <a class="prompt-log-in" v-if="user === '' && userLoadStatus === 2"
+                                       v-on:click="login()">登录后喜欢该咖啡店</a>
+                                </div>
                             </div>
                         </div>
 
@@ -117,6 +121,9 @@
 </template>
 
 <script>
+
+    import {EventBus} from "../event-bus";
+
     import Loader from '../components/global/Loader';
     import IndividualCafeMap from '../components/cafes/IndividualCafeMap';
     import ToggleLike from '../components/cafes/ToggleLike';
@@ -143,7 +150,22 @@
 
             cafe() {
                 return this.$store.getters.getCafe;
-            }
+            },
+
+            // 从 Vuex 中获取用户加载状态
+            userLoadStatus() {
+                return this.$store.getters.getUserLoadStatus();
+            },
+
+            // 从 Vuex 中获取用户信息
+            user() {
+                return this.$store.getters.getUser;
+            },
+        },
+        methods: {
+            login() {
+                EventBus.$emit('prompt-login');
+            },
         }
     }
 </script>

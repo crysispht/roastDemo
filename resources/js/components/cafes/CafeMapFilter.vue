@@ -1,9 +1,4 @@
 <template>
-    <div id="cafe-map-container">
-        <div id="cafe-map">
-
-        </div>
-    </div>
     <div id="cafe-map-filter">
         <div class="grid-container">
             <div class="grid-x grid-padding-x">
@@ -11,22 +6,23 @@
                     <label>搜索</label>
                     <input type="text" v-model="textSearch" placeholder="搜索"/>
                 </div>
+                <div class="is-roaster-container">
+                    <input type="checkbox" v-model="isRoaster"/> <label>烘焙店</label>
+                </div>
+                <div class="brew-methods-container">
+                    <div class="filter-brew-method" v-on:click="toggleBrewMethodFilter( method.method )"
+                         v-bind:class="{'active' : brewMethods.indexOf( method.method ) > -1 }"
+                         v-for="method in cafeBrewMethods">
+                        {{ method.method }}
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="is-roaster-container">
-        <input type="checkbox" v-model="isRoaster"/> <label>烘焙店</label>
-    </div>
-    <div class="brew-methods-container">
-        <div class="filter-brew-method" v-on:click="toggleBrewMethodFilter( method.method )"
-             v-bind:class="{'active' : brewMethods.indexOf( method.method ) > -1 }" v-for="method in cafeBrewMethods">
-            {{ method.method }}
         </div>
     </div>
 </template>
 
 <script>
-    import { EventBus } from '../../event-bus.js';
+    import {EventBus} from '../../event-bus.js';
 
     export default {
         data() {
@@ -49,7 +45,7 @@
                     this.brewMethods.push(method);
                 }
             },
-            updateFilterDisplay(){
+            updateFilterDisplay() {
                 EventBus.$emit('filters-updated', {
                     text: this.textSearch,
                     tags: [],
@@ -74,24 +70,8 @@
     }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
     @import '~@/abstracts/_variables.scss';
-
-    div#cafe-map-container {
-        position: absolute;
-        top: 50px;
-        left: 0px;
-        right: 0px;
-        bottom: 50px;
-
-        div#cafe-map {
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            right: 0px;
-            bottom: 0px;
-        }
-    }
 
     div#cafe-map-filter {
         background-color: white;
@@ -105,7 +85,7 @@
         width: 25%;
     }
 
-    div.filter-brew-method{
+    div.filter-brew-method {
         display: inline-block;
         height: 30px;
         text-align: center;
@@ -122,7 +102,7 @@
         font-family: 'Josefin Sans', sans-serif;
         font-size: 12px;
 
-        &.active{
+        &.active {
             border-bottom: 4px solid $primary-color;
         }
     }

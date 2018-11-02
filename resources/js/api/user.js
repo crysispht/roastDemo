@@ -25,5 +25,10 @@ export default {
                 state: state
             }
         )
-    }
+    },
+
+
+    /*
+    GET /api/v1/
+     */
 }
