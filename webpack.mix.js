@@ -32,8 +32,8 @@ mix.js('resources/js/app.js', 'public/js')
                 '@': path.resolve('resources/sass')
             }
         },
-        output: {
-            chunkFilename: 'js/[name].js'
-        }
+        // output: {
+        //     chunkFilename: 'js/[name].js'
+        // }
     })
     .sass('resources/sass/app.scss', 'public/css');

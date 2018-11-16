@@ -2,6 +2,7 @@
  * Adds the promise polyfill for IE 11
  */
 
+
 require('es6-promise').polyfill()
 
 /**
@@ -28,7 +29,7 @@ import {brewMethods} from './modules/brewMethods.js';
 import {filters} from './modules/filters.js';
 import {display} from './modules/display.js';
 import {cities} from './modules/cities.js';
-
+import {chatroom} from "./modules/chatroom";
 
 /**
  * Export the data store.
@@ -40,6 +41,7 @@ export default new Vuex.Store({
         brewMethods,
         filters,
         display,
-        cities
+        cities,
+        chatroom
     }
 })

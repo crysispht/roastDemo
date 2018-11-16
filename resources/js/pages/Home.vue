@@ -11,6 +11,7 @@
         <map-legend></map-legend>
 
         <router-view></router-view>
+        <chat-room></chat-room>
     </div>
 </template>
 
@@ -21,6 +22,7 @@
     import AddCafeButton from '../components/cafes/AddCafeButton.vue';
     import ToggleCafesView from '../components/cafes/ToggleCafesView.vue';
     import MapLegend from '../components/cafes/MapLegend.vue';
+    import ChatRoom from '../components/chatroom/ChatRoom';
 
     export default {
         components: {
@@ -28,7 +30,8 @@
             CafeList,
             AddCafeButton,
             ToggleCafesView,
-            MapLegend
+            MapLegend,
+            ChatRoom
         },
 
         computed: {

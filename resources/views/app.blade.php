@@ -12,28 +12,13 @@
     <script src="https://webapi.amap.com/maps?v=1.4.10&key=10dc8f591cf134c366cde9a6eb384d89"></script>
 
     <script type='text/javascript'>
-        window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
-        ]); ?>
+        @php
+            echo 'window.Laravel = '. json_encode(['csrfToken' => csrf_token(),]);
+        @endphp
     </script>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128359684-1"></script>
-{{--
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-
-        gtag('js', new Date());
-
-        gtag('config', 'UA-128359684-1');
-    </script>
---}}
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128359684-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -46,10 +31,10 @@
         gtag('config', 'UA-128359684-1');
     </script>
 
+    <script src="//127.0.0.1:6001/socket.io/socket.io.js"></script>
 
 </head>
 <body>
-
 <div id="app">
     <router-view></router-view>
 </div>

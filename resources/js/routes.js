@@ -82,7 +82,8 @@ function requireAuth(to, from, next) {
 // 基于 Vue 异步组件 + Webpack 实现路由懒加载
 function loadView(dir, view) {
     // 注释不要去掉，对应上面 webpack 编译后的文件名
-    return () => import(/* webpackChunkName: "[request]" */ './' + dir + '/' + view + '.vue');
+    // return () => import(/* webpackChunkName: "[request]" */ './' + dir + '/' + view + '.vue');
+    return Vue.component(view, require('./' + dir + '/' + view + '.vue'))
 }
 
 

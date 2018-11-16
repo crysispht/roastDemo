@@ -93,6 +93,17 @@ Route::group(['prefix' => 'v1'], function () {
     | Description:    Handles a search for a company.
     */
     Route::get('/companies/search', 'API\CompaniesController@getCompanySearch');
+
+    /*
+    |-------------------------------------------------------------------------------
+    | Send Public Channel Message
+    |-------------------------------------------------------------------------------
+    | URL:            /api/v1/chat/public/sendMessage
+    | Controller:     API\ChatRoomController@publicSendPMessage
+    | Method:         POST
+    | Description:    Send Public Channel Message
+    */
+    Route::post('chat/public/sendMessage', 'API\ChatRoomController@publicSendMessage');
 });
 
 // 私有路由，需要登录才能访问
