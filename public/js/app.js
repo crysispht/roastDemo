@@ -44865,7 +44865,7 @@ window.io = __webpack_require__(97);
 
 window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default.a({
     broadcaster: 'socket.io',
-    host: '127.0.0.1:6001'
+    host: window.location.hostname + ':6001'
 });
 
 
@@ -44874,7 +44874,7 @@ window.Echo = new __WEBPACK_IMPORTED_MODULE_0_laravel_echo___default.a({
 
 
 
-window.vue = new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
+new __WEBPACK_IMPORTED_MODULE_1_vue___default.a({
     router: __WEBPACK_IMPORTED_MODULE_2__routes__["a" /* default */],
     store: __WEBPACK_IMPORTED_MODULE_3__store__["a" /* default */]
 }).$mount('#app');
@@ -77096,11 +77096,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             Echo.disconnect();
         });
 
-        Echo.channel('chat.public').listen('PublicChatMessageWasReceived', function (e) {
+        Echo.join('chat.public').here(function (members) {
+            console.log(members);
+        }).joining(function (joiningMember, members) {
+            console.log(joiningMember, members);
+        }).leaving(function (leavingMember, members) {
+            console.log(leavingMember, members);
+        }).listen('PublicChatMessageWasReceived', function (e) {
             // 如果有广播过来你可以进行逻辑操作，比如给用户一个通知
-            console.log('[公共频道]：   ' + e.chatMessage);
+            var userInfo = e.user;
+            var nick = userInfo ? userInfo.name : '游客' + e.socket;
+            console.log('[公共频道]：   ' + nick + ' 说: ' + e.chatMessage);
         });
-        // window.chatroom = this;
+
+        window.chatroom = this;
     },
 
     methods: {

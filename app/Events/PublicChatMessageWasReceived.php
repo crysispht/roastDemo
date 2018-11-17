@@ -36,6 +36,6 @@ class PublicChatMessageWasReceived implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('chat.public');
+        return new PresenceChannel('chat.public');
     }
 }

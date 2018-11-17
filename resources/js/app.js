@@ -35,7 +35,7 @@ window.io = require('socket.io-client');
 
 window.Echo = new Echo({
     broadcaster: 'socket.io',
-    host: '127.0.0.1:6001'
+    host: window.location.hostname + ':6001'
 });
 
 import Vue from 'vue';

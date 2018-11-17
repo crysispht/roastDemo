@@ -11,9 +11,10 @@ use Illuminate\Support\Facades\Auth;
 class ChatRoomController extends Controller
 {
 
+
     public function publicSendMessage(Request $request)
     {
-        $user = Auth::user();
+        $user = Auth::guard('api')->user();
         broadcast(new PublicChatMessageWasReceived($request->input('message', ''), $user))->toOthers();
         return response()->json(['code' => 200, 'message' => 'success']);
     }

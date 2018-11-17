@@ -31,7 +31,7 @@
         gtag('config', 'UA-128359684-1');
     </script>
 
-    <script src="//127.0.0.1:6001/socket.io/socket.io.js"></script>
+    <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
 
 </head>
 <body>
